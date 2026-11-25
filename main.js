@@ -144,6 +144,19 @@ function syncTray() {
   if (appSettings.minimizeToTray) ensureTray();
   else if (tray) { try { tray.destroy(); } catch (_) {} tray = null; }
 }
+function updateTrayStatus() {
+  if (!tray) return;
+  try {
+    tray.setToolTip(state.running ? "OrbSniper — running" : "OrbSniper — stopped");
+    tray.setContextMenu(Menu.buildFromTemplate([
+      { label: "Open OrbSniper", click: showMainWindow },
+      { type: "separator" },
+      { label: state.running ? "Quest worker: running" : "Quest worker: stopped", enabled: false },
+      { type: "separator" },
+      { label: "Quit", click: quitApplication }
+    ]));
+  } catch (_) {}
+}
 function showMainWindow() {
   if (!win || win.isDestroyed()) return;
   win.show();
@@ -178,7 +191,7 @@ function send(channel, payload) {
 function uiLog(msg) { send("sniper:log", msg); }
 function say(key, level, ...args) { send("sniper:say", { key, level, args }); }
 function phase(p) { send("sniper:phase", p); }
-function setRunning(v) { state.running = v; send("sniper:running", v); }
+function setRunning(v) { state.running = v; send("sniper:running", v); updateTrayStatus(); }
 
 // Every failure path must go through here. Leaving state.running true was what
 // wedged the UI: the Start button stayed disabled and runFlow() returned early
