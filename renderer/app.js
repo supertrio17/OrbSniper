@@ -123,6 +123,11 @@ function onEngineEvent(e) {
     return;
   }
 
+  if (e.ev === "quest_done") {
+    currentProgress = null;
+    $("f-remaining").textContent = "0:00";
+  }
+
   if (e.ev === "claimed") {
     claimed++;
     $("f-claimed").textContent = String(claimed);
@@ -168,6 +173,7 @@ function setStatus(title, hint, beacon, stateCls) {
 }
 
 function setIdle() {
+  currentProgress = null;
   running = false;
   setStatus(t("st_idle"), t("hint_idle"), "", "");
   $("bar").hidden = true;
@@ -579,6 +585,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const beginRun = () => {
+    currentProgress = null;
     running = true;
     claimed = 0;
     tally = { total: 0, done: 0, left: 0, manual: 0 };

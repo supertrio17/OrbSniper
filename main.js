@@ -170,10 +170,14 @@ function hideMainWindow() {
   return false;
 }
 function quitApplication() {
+  if (isQuitting) return;
   isQuitting = true;
-  if (state.running) stopFlow();
+  const wasRunning = state.running;
+  if (wasRunning) stopFlow();
   if (tray) { try { tray.destroy(); } catch (_) {} tray = null; }
-  app.quit();
+  // Let the stop flag reach Discord before Electron tears down its CDP socket.
+  if (wasRunning) setTimeout(() => app.quit(), 350);
+  else app.quit();
 }
 function saveSettings(patch) {
   appSettings = normalizeSettings({ ...appSettings, ...(patch && typeof patch === "object" ? patch : {}) });
