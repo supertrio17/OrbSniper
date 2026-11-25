@@ -79,6 +79,12 @@ function closeLangMenu() {
 // counter, for one, never moved on German, French, Polish or Turkish.
 // Now the engine sends structured events and the text is built from the key.
 const EVENTS = {
+  // Metadata is forwarded through dedicated preload listeners; these entries
+  // also keep the engine-to-UI event contract explicit and testable.
+  quests:         ()  => ["l_watching", "info"],
+  account:        ()  => ["l_watching", "info"],
+  balance:        ()  => ["l_watching", "info"],
+  quest_filtered: (e) => ["l_skipped", "warn", e.quest],
   started:       ()  => ["l_watching", "info"],
   takeover:      ()  => ["l_takeover", "info"],
   dup:           ()  => ["l_dup", "warn"],
