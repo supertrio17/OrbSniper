@@ -1,0 +1,51 @@
+name: Vencord userplugin compatibility
+
+on:
+  push:
+    branches:
+      - feature/vencord-quest-dashboard
+  pull_request:
+    paths:
+      - "index.tsx"
+      - "dashboard.tsx"
+      - "questData.ts"
+      - "style.css"
+      - ".github/workflows/vencord-compat.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out OrbSniper
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check out current Vencord
+        run: git clone --depth 1 https://github.com/Vendicated/Vencord.git "$RUNNER_TEMP/Vencord"
+
+      - name: Install the custom userplugin
+        working-directory: ${{ runner.temp }}/Vencord
+        run: |
+          mkdir -p src/userplugins/orbSniper
+          cp "$GITHUB_WORKSPACE/index.tsx" src/userplugins/orbSniper/index.tsx
+          cp "$GITHUB_WORKSPACE/dashboard.tsx" src/userplugins/orbSniper/dashboard.tsx
+          cp "$GITHUB_WORKSPACE/questData.ts" src/userplugins/orbSniper/questData.ts
+          cp "$GITHUB_WORKSPACE/style.css" src/userplugins/orbSniper/style.css
+
+      - name: Install Vencord dependencies
+        working-directory: ${{ runner.temp }}/Vencord
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Build Vencord with OrbSniper
+        working-directory: ${{ runner.temp }}/Vencord
+        run: pnpm build

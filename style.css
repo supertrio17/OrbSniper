@@ -1,0 +1,164 @@
+.orbsniper-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--text-normal);
+}
+
+.orbsniper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.orbsniper-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.orbsniper-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    gap: 8px;
+}
+
+.orbsniper-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--background-secondary);
+}
+
+.orbsniper-stat span {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.orbsniper-stat strong {
+    font-size: 18px;
+    font-variant-numeric: tabular-nums;
+}
+
+.orbsniper-toolbar {
+    display: flex;
+    gap: 8px;
+}
+
+.orbsniper-toolbar input,
+.orbsniper-toolbar select {
+    min-width: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--background-modifier-accent);
+    border-radius: 6px;
+    color: var(--text-normal);
+    background: var(--background-secondary);
+}
+
+.orbsniper-toolbar input {
+    flex: 1;
+}
+
+.orbsniper-quest-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--background-modifier-accent);
+    border-radius: 8px;
+    background: var(--background-secondary);
+}
+
+.orbsniper-quest-heading,
+.orbsniper-quest-meta,
+.orbsniper-progress-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.orbsniper-quest-heading strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.orbsniper-quest-meta,
+.orbsniper-quest-task,
+.orbsniper-footer {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.orbsniper-quest-meta {
+    flex-wrap: wrap;
+}
+
+.orbsniper-status {
+    flex-shrink: 0;
+    padding: 3px 7px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: var(--background-tertiary);
+}
+
+.orbsniper-status-claimable {
+    color: var(--status-positive);
+}
+
+.orbsniper-status-expired {
+    color: var(--text-muted);
+}
+
+.orbsniper-progress-wrap {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.orbsniper-progress-track {
+    height: 6px;
+    flex: 1;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--background-modifier-accent);
+}
+
+.orbsniper-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--status-positive);
+}
+
+.orbsniper-empty {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    border: 1px dashed var(--background-modifier-accent);
+    border-radius: 8px;
+}
+
+.orbsniper-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--background-modifier-accent);
+}
+
+@media (max-width: 600px) {
+    .orbsniper-toolbar,
+    .orbsniper-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .orbsniper-quest-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

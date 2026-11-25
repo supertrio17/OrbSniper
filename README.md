@@ -19,6 +19,14 @@ No token, no game installs, no 500 GB downloads.
 
 ---
 
+## Vencord userplugin
+
+This repository also contains a custom **read-only Vencord Quest Monitor** with a dashboard, progress and reward summaries, filters, and notifications. It is separate from the Windows Electron app. See [README-VENCORD.md](README-VENCORD.md) for installation and safety details.
+
+> The Vencord version does not automate quest completion, simulate gameplay, or submit progress.
+
+---
+
 > [!IMPORTANT]
 > **From Russia you need a VPN.** Discord is blocked there: without a VPN neither the client nor the quest shop will load. Turn the VPN on before you start and keep it on while farming.
 
