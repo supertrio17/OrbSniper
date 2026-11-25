@@ -27,7 +27,7 @@ Custom plugins require building Vencord from source.
 
 1. Install Vencord from source using the official guide at https://docs.vencord.dev/installing/.
 2. Open the Vencord checkout and navigate to src/userplugins.
-3. Clone this repository as the plugin folder using: git clone https://github.com/supertrio17/OrbSniper.git orbSniper
+3. Clone this repository as the plugin folder using: git clone --branch feature/vencord-quest-dashboard --single-branch https://github.com/supertrio17/OrbSniper.git orbSniper
 4. From the Vencord repository root, run: pnpm build
 5. Inject/reinstall that build if your Vencord setup requires it, then restart Discord.
 6. Open Settings → Vencord → Plugins, enable OrbSniper, and open the plugin's settings page for the dashboard.
